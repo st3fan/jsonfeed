@@ -15,14 +15,10 @@ import (
 
 func Test_ParseSimple(t *testing.T) {
 	r, err := os.Open("testdata/feed.json")
-	if err != nil {
-		t.Error("Could not open testdata/feed.json", err)
-	}
+	assert.NoError(t, err, "Could not open testdata/feed.json")
 
 	feed, err := jsonfeed.Parse(r)
-	if err != nil {
-		t.Error("Could not parse testdata/feed.json", err)
-	}
+	assert.NoError(t, err, "Could not parse testdata/feed.json")
 
 	assert.Equal(t, "https://jsonfeed.org/version/1", feed.Version)
 	assert.Equal(t, "JSON Feed", feed.Title)
@@ -40,6 +36,8 @@ func Test_ParseSimple(t *testing.T) {
 	assert.Equal(t, "Announcing JSON Feed", feed.Items[0].Title)
 	assert.Equal(t, "<p>We ...", feed.Items[0].ContentHTML)
 
-	datePublished, _ := time.Parse("2006-01-02T15:04:05-07:00", "2017-05-17T08:02:12-07:00")
+	datePublished, err := time.Parse("2006-01-02T15:04:05-07:00", "2017-05-17T08:02:12-07:00")
+	assert.NoError(t, err, "Could not parse timestamp")
+
 	assert.Equal(t, datePublished, feed.Items[0].DatePublished)
 }
