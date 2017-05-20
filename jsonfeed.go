@@ -52,7 +52,7 @@ type Feed struct {
 	Title       string `json:"title"`
 	HomePageURL string `json:"home_page_url"`
 	FeedURL     string `json:"feed_url"`
-	Description string `json:"Description"`
+	Description string `json:"description"`
 	UserComment string `json:"user_comment"`
 	NextURL     string `json:"next_url"`
 	Icon        string `json:"icon"`
