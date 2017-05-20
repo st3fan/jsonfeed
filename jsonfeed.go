@@ -82,7 +82,7 @@ type Item struct {
 	// Author has the same structure as the top-level author. If not
 	// specified in an item, then the top-level author, if present,
 	// is the author of the item.
-	Author Author `json:"author,omitempty"`
+	Author *Author `json:"author,omitempty"`
 
 	// Tags can have any plain text values you want. Tags tend to be
 	// just one word, but they may be anything. Note: they are not
